@@ -22,5 +22,11 @@
     "options": ["Firewall", "Antivirus", "Encryption", "IDS"],
     "correct": 2,
     "explanation": "Encryption scrambles data making it unreadable without the proper key."
+  },
+  {
+    "question": "Which security mechanism detects suspicious network activity in real time?",
+    "options": ["Firewall", "IDS", "Honeypot", "Antivirus"],
+    "correct": 1,
+    "explanation": "An Intrusion Detection System (IDS) monitors network traffic to identify and alert on potential attacks in real time."
   }
 ]
