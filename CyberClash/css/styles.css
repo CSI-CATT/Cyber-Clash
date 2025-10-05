@@ -1,25 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #0a0e27;
-            font-family: 'Rajdhani', 'Orbitron', sans-serif;
-            overflow: hidden;
-            touch-action: none;
-        }
-        #game-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-        }
-        canvas {
-            display: block;
-            max-width: 100%;
-            max-height: 100%;
-        }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at center, #0a0e27 0%, #030519 100%);
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  overflow: hidden;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Title and Score */
+h1 {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+#score {
+  color: #00ffaa;
+  text-shadow: 0 0 6px #00ffaa;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Game Container */
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 120px); /* leave space for title/score */
+}
+
+canvas {
+  display: block;
+  width: 90vw;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-width: 400px;
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  background: #000;
+  animation: glowPulse 2.5s infinite ease-in-out;
+}
+
+/* Neon glow animation */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(0, 255, 255, 0.7); }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Small phones */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  #score {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  canvas {
+    width: 95vw;
+    max-width: 320px;
+    border-width: 1px;
+  }
+}
+
+/* Tablets / Landscape */
+@media (min-width: 768px) and (max-width: 1024px) {
+  canvas {
+    width: 70vw;
+    max-width: 500px;
+  }
+}
