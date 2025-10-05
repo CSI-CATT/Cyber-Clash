@@ -1,0 +1,26 @@
+[
+  {
+    "question": "Which defense is most effective against Phishing attacks?",
+    "options": ["Firewall", "Antivirus", "Honeypot", "Encryption"],
+    "correct": 1,
+    "explanation": "Antivirus software can detect and block phishing attempts by scanning for malware."
+  },
+  {
+    "question": "What attack causes the most direct damage to systems?",
+    "options": ["DDoS", "Phishing", "SQL Injection", "Honeypot"],
+    "correct": 2,
+    "explanation": "SQL Injection can directly access and manipulate databases, causing severe damage."
+  },
+  {
+    "question": "Which defensive tool acts as a decoy?",
+    "options": ["Firewall", "Honeypot", "IDS", "Encryption"],
+    "correct": 1,
+    "explanation": "Honeypots are decoy systems designed to lure and trap attackers."
+  },
+  {
+    "question": "What protects data even if systems are breached?",
+    "options": ["Firewall", "Antivirus", "Encryption", "IDS"],
+    "correct": 2,
+    "explanation": "Encryption scrambles data making it unreadable without the proper key."
+  }
+]

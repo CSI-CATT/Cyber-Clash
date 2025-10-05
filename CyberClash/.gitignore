@@ -1,0 +1,9 @@
+# Firebase config (real keys)
+js/config.js
+
+#dummy keys
+js/config.example.js
+
+# System files
+.DS_Store
+Thumbs.db
