@@ -46,7 +46,7 @@ class AuthScene extends Phaser.Scene {
     // 2) Google Sign-In
     const googleBtn = this.add.rectangle(width / 2, height / 2 + 20, 550, 90, 0x00ff88)
       .setInteractive({ useHandCursor: true });
-    this.add.text(width / 2, height / 2 - 5, '🔐 Continue with Google', {
+    this.add.text(width / 2, height / 2 - 5, '🔐 Sign Up', {
       fontFamily: 'Rajdhani',
       fontSize: '30px',
       fontWeight: 'bold',
