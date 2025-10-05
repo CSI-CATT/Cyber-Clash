@@ -19,6 +19,7 @@ Defend your server using firewalls, antivirus, IDS, and encryption while learnin
   (copy from `js/config.example.js`)
 
 ## 📂 Folder Structure
+<pre>
 CyberClash/
 ├── index.html
 ├── css/
@@ -30,3 +31,4 @@ CyberClash/
 │ ├── cards.json
 │ └── quiz.json
 └── assets/
+</pre>
