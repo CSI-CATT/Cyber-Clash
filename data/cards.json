@@ -102,5 +102,31 @@
     "description": "Floods target with traffic to overwhelm systems",
     "when": "Use to slow down enemy defenses",
     "behavior": "normal"
+  },
+    "stormworm": {
+    "name": "Storm Worm",
+    "cost": 4,
+    "type": "offensive",
+    "damage": 22,
+    "hp": 60,
+    "speed": 140,
+    "color": 16711680,
+    "icon": "🌩️",
+    "description": "Email-based worm that turns infected systems into botnets",
+    "when": "Deploy to rapidly infect and overwhelm enemy systems",
+    "behavior": "spread"
+  },
+  "vpn": {
+    "name": "VPN",
+    "cost": 3,
+    "type": "defensive",
+    "damage": 8,
+    "hp": 100,
+    "speed": 120,
+    "color": 255,
+    "icon": "🕶️",
+    "description": "Encrypts traffic and masks IP to prevent tracking",
+    "when": "Use to shield units from targeted attacks",
+    "behavior": "cloak"
   }
 }
