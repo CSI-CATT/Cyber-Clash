@@ -1,6 +1,6 @@
 This project was created by [Bhargavi Shinde](https://github.com/ergocoder) (Maintainer) as a personal project and is now open-sourced for Hacktoberfest contributions.
 
-# CyberClash 🔐⚔️
+# Cyber-Clash 🔐⚔️
 **Cybersecurity Strategy Card Game** built with Phaser.js + Firebase.
 
 ## 🎮 About
