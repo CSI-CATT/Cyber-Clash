@@ -1,3 +1,5 @@
+.vscode/
+
 # Firebase config (real keys)
 js/config.js
 
