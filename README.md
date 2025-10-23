@@ -13,7 +13,8 @@ Defend your server using firewalls, antivirus, IDS, and encryption while learnin
 3. Complete quiz rounds to test your knowledge.
 
 ## 🛠️ Setup (for developers)
-- Clone this repo
+- Fork this repo on the GitHub page
+- Clone the forked repo to your local machine
 - Open `index.html`
 - (Optional) add your own Firebase config in `js/config.js`  
   (copy from `js/config.example.js`)
