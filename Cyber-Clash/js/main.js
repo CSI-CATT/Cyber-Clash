@@ -37,7 +37,26 @@ Promise.all([
       },
       scale: {
         mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 800,
+        height: 1200,
+        min: {
+          width: 320,
+          height: 480
+        },
+        max: {
+          width: 1920,
+          height: 2880
+        },
+        autoRound: true
+      },
+      dom: {
+        createContainer: true
+      },
+      render: {
+        pixelArt: false,
+        antialias: true,
+        roundPixels: true
       },
       scene: [LoadingScene, WelcomeScene, AuthScene, BattleScene, ResultScene]
     };
