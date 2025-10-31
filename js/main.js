@@ -25,8 +25,9 @@ Promise.all([
   // ---- Game Configuration ----
   const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 1200,
+    width: window.innerWidth * 0.8,
+height: window.innerHeight * 0.9,
+
     parent: "game-container",
     physics: {
       default: "arcade",
@@ -63,6 +64,10 @@ Promise.all([
 
   // ---- Start Phaser game AFTER data is loaded ----
   const game = new Phaser.Game(config);
+  window.addEventListener("resize", () => {
+  game.scale.resize(window.innerWidth * 0.8, window.innerHeight * 0.9);
+});
+
 
   // ✅ Center the game canvas perfectly
   game.canvas.style.display = "block";
