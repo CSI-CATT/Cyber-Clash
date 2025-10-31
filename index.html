@@ -16,6 +16,12 @@
   <button id="toggle-btn">🌙 Dark Mode</button>
 </div>
 
+<div id="login-container">
+  <button id="login-btn">🔐 Login</button>
+</div>
+
+
+
 <div id="game-container"></div>
 
     <div id="game-container"></div>
@@ -60,5 +66,13 @@
 
 
     </script>
+   <script>
+  document.getElementById("login-btn").addEventListener("click", () => {
+    // Redirect to login.html (open in same tab)
+    window.location.href = "login.html";
+  });
+</script>
+
+
 </body>
 </html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Access | CyberClash</title>
+    <!-- Google Font: Inter (to match game theme) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- All Firebase scripts have been removed -->
+
+    <style>
+        /* --- New Theme based on screenshots --- */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #2D343A; /* Dark blue/grey from game UI */
+            color: #E0E0E0; /* Light text */
+            font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+        }
+
+        /* --- Login Container --- */
+        .login-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-form-wrapper {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(50, 60, 75, 0.7); /* Darker semi-transparent blue */
+            border: 2px solid #5AC8FA; /* Light blue accent */
+            border-radius: 8px;
+            padding: 30px 40px;
+            box-shadow: 0 0 25px rgba(90, 200, 250, 0.5), 
+                        inset 0 0 15px rgba(90, 200, 250, 0.3);
+            
+            /* Glassmorphism Effect */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Forms & Content --- */
+        .form-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #5AC8FA; /* Light blue accent */
+            text-shadow: 0 0 10px rgba(90, 200, 250, 0.7);
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: #5AC8FA; /* Light blue accent */
+            opacity: 0.7;
+            font-size: 0.9rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 20px 15px 8px 15px; /* Padding for label */
+            box-sizing: border-box;
+            background: transparent;
+            border: 1px solid #5AC8FA; /* Light blue accent */
+            border-radius: 4px;
+            color: #E0E0E0; /* Light text */
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1EFA9C; /* Minty green from "START DEMO" */
+            box-shadow: 0 0 15px rgba(30, 250, 156, 0.5);
+        }
+
+        /* Animate label up when focused or has value */
+        .form-input:focus + .input-label,
+        .form-input:not(:placeholder-shown) + .input-label {
+            top: 4px;
+            font-size: 0.75rem;
+            opacity: 1;
+            color: #1EFA9C; /* Minty green focus */
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 2px solid #1EFA9C; /* Minty green */
+            border-radius: 4px;
+            color: #1EFA9C;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .form-button:hover {
+            background: #1EFA9C;
+            color: #2D343A; /* Dark background color */
+            box-shadow: 0 0 20px #1EFA9C;
+        }
+
+        .form-toggle-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-link {
+            color: #5AC8FA; /* Light blue */
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .toggle-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #fff;
+        }
+
+        /* Hide signup form by default */
+        #signup-form {
+            display: none;
+        }
+
+        /* Message Box */
+        .message-box {
+            display: none;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .message-box.error {
+            background-color: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+        }
+
+        .message-box.success {
+            background-color: rgba(30, 250, 156, 0.2); /* Minty green */
+            border: 1px solid #1EFA9C;
+            color: #1EFA9C;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-form-wrapper">
+
+            <!-- Message Box for Errors/Success -->
+            <div id="message-box" class="message-box"></div>
+
+            <!-- Login Form -->
+            <form id="login-form">
+                <h2 class="form-title">[ SYSTEM ACCESS ]</h2>
+                <div class="input-group">
+                    <input type="email" id="login-email" class="form-input" placeholder=" " required>
+                    <label for="login-email" class="input-label">// USER_ID [EMAIL]</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" class="form-input" placeholder=" " required>
+                    <label for="login-password" class="input-label">// ACCESS_KEY [PASSWORD]</label>
+                </div>
+                <button type="submit" class="form-button">&gt; INITIATE_LOGIN</button>
+                <div class="form-toggle-link">
+                    <span id="show-signup" class="toggle-link">:: No credentials? [Register_]</span>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form">
+                <h2 class="form-title">[ CREATE IDENTITY ]</h2>
+                <div class="input-group">
+                    <input type="email" id="signup-email" class="form-input" placeholder=" " required>
+                    <label for="signup-email" class="input-label">// USER_ID [EMAIL]</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signup-password" class="form-input" placeholder=" " required>
+                    <label for="signup-password" class="input-label">// NEW_ACCESS_KEY</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signup-confirm" class="form-input" placeholder=" " required>
+                    <label for="signup-confirm" class="input-label">// CONFIRM_ACCESS_KEY</label>
+                </div>
+                <button type="submit" class="form-button">&gt; GENERATE_ID</button>
+                <div class="form-toggle-link">
+                    <span id="show-login" class="toggle-link">:: Identity confirmed? [Login_]</span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        // --- All Firebase logic has been removed ---
+
+        // --- Form Toggle Script ---
+        const showSignupBtn = document.getElementById('show-signup');
+        const showLoginBtn = document.getElementById('show-login');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const messageBox = document.getElementById('message-box');
+
+        showSignupBtn.addEventListener('click', () => {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            clearMessages();
+        });
+
+        showLoginBtn.addEventListener('click', () => {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            clearMessages();
+        });
+
+        // --- Form Submission Handlers ---
+        
+        function showMessage(type, text) {
+            messageBox.className = 'message-box'; // Reset classes
+            messageBox.classList.add(type); // 'error' or 'success'
+            messageBox.textContent = text;
+            messageBox.style.display = 'block';
+        }
+
+        function clearMessages() {
+            messageBox.style.display = 'none';
+            messageBox.textContent = '';
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            clearMessages();
+            
+            // --- MOCK LOGIN LOGIC (FRONTEND ONLY) ---
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            
+            // Example for demonstration
+            if (email === 'demo@cyberclash.io' && pass === 'password123') {
+                showMessage('success', 'ACCESS GRANTED. Redirecting...');
+                // You can uncomment this to redirect to your game
+                // setTimeout(() => {
+                //    window.location.href = 'index.html'; 
+                // }, 1500);
+            } else {
+                showMessage('error', 'ACCESS DENIED. Check credentials.');
+            }
+        });
+
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            clearMessages();
+
+            const pass = document.getElementById('signup-password').value;
+            const confirmPass = document.getElementById('signup-confirm').value;
+
+            if (pass !== confirmPass) {
+                showMessage('error', 'KEYS DO NOT MATCH. RETRY.');
+                return;
+            }
+
+            // --- MOCK SIGNUP LOGIC (FRONTEND ONLY) ---
+            const email = document.getElementById('signup-email').value;
+            
+            if (email.includes('@') && pass.length >= 6) {
+                showMessage('success', 'IDENTITY CREATED. Please login.');
+                // Toggle to login form
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            } else if (!email.includes('@')) {
+                 showMessage('error', 'REGISTRATION FAILED. Invalid User ID format.');
+            } else if (pass.length < 6) {
+                showMessage('error', 'Error: Access Key must be at least 6 characters.');
+            } else {
+                showMessage('error', 'REGISTRATION FAILED. Please try again.');
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
