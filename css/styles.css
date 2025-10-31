@@ -134,3 +134,44 @@ body {
             }
         }
 
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 10;
+}
+
+#toggle-btn {
+  padding: 8px 14px;
+  background: #00ffff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+}
+
+#toggle-btn:hover {
+  background: #00bfff;
+}
+
+
+body.light-mode {
+  background: radial-gradient(circle at center, #f0f0f5 0%, #ffffff 100%);
+  color: #000;
+}
+
+body.light-mode #game-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode #toggle-btn {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}

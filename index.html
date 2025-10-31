@@ -11,6 +11,13 @@
 
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+<div id="theme-toggle">
+  <button id="toggle-btn">🌙 Dark Mode</button>
+</div>
+
+<div id="game-container"></div>
+
     <div id="game-container"></div>
 
     <!-- Firebase + Game Scripts -->
@@ -32,5 +39,26 @@
     <!-- Game Entry -->
     <script src="js/main.js"></script>
 
+
+    <script>
+        
+  const toggleBtn = document.getElementById('toggle-btn');
+  const body = document.body;
+
+  // Check saved preference
+  if (localStorage.getItem('theme') === 'light') {
+    body.classList.add('light-mode');
+    toggleBtn.textContent = '🌞 Light Mode';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    const isLight = body.classList.contains('light-mode');
+    toggleBtn.textContent = isLight ? '🌞 Light Mode' : '🌙 Dark Mode';
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+
+
+    </script>
 </body>
 </html>
