@@ -5,23 +5,22 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            background: #0a0e27;
-            font-family: 'Rajdhani', 'Orbitron', sans-serif;
-            overflow: hidden;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        #game-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh;
-        }
+      /* Center the game in the middle of the screen */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #000; /* optional: gives a game-like dark background */
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
         canvas {
             display: block;
             max-width: 100%;
